@@ -195,13 +195,11 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
     string input;
-    int x = 10;
-    cout << "" << endl;
+    int x = 10, y =10;
     cin >> input;
-    cout <<  "" << endl;
     cin >> x;
-    cout << "" << endl;
+    cin >> y;
     cout << x_to_ten(x, input) << endl;
-    cout << ten_to_x(x, x_to_ten(x, input)) << endl;
+    cout << ten_to_x(y, x_to_ten(x, input)) << endl;
     return 0;
 }
