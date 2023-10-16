@@ -1,5 +1,4 @@
 #include <iostream>
-#include "locale.h"
 
 using namespace std;
 
@@ -193,7 +192,6 @@ string ten_to_x(int x, unsigned long long a)
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
     string input;
     int x = 10, y =10;
     cin >> input;
