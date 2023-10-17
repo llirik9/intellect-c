@@ -5,21 +5,7 @@ using namespace std;
 
 int char_to_int(char x)
 {
-    int answer = 0;
-    switch (x)
-    {
-        case '0': answer = 0; break;
-        case '1': answer = 1; break;
-        case '2': answer = 2; break;
-        case '3': answer = 3; break;
-        case '4': answer = 4; break;
-        case '5': answer = 5; break;
-        case '6': answer = 6; break;
-        case '7': answer = 7; break;
-        case '8': answer = 8; break;
-        case '9': answer = 9; break;
-        default: answer = 0; break;
-    }
+    int answer = x-'0';
     return answer;
 }
 
@@ -46,11 +32,14 @@ char int_to_char(int x)
 string get_rim_num(char input, int n)
 {
     int x = char_to_int(input) * pow(10, n);
-    cout << input << "and" << x << endl;
-    string a = "";
+    char a = ' ';
+    if (char_to_int(input) == 3)
+    {
+        int x = char_to_int(1) * pow(10, n);
+    }
     switch (x)
     {
-        case 0: a = ""; break;
+        case 0: a = ' '; break;
         case 1: a = 'I'; break;
         case 2: a = 'II'; break;
         case 3: a = 'III'; break;
@@ -66,13 +55,19 @@ string get_rim_num(char input, int n)
         case 1000: a = 'M'; break;
         default: break;
     }
-    return a;
+    string answer = "";
+    answer.push_back(a);
+    if (char_to_int(input) == 3)
+    {
+        answer.push_back(a);
+        answer.push_back(a);
+    }
+    return answer;
 }
 
 string get_rim_num(int b_num, char action, int s_num, int n)
 {
     string answer;
-    cout << char(6) << endl;
     string base_num = get_rim_num(int_to_char(b_num), n);
     string second_num = get_rim_num(int_to_char(s_num), n);
     switch(action)
@@ -91,10 +86,8 @@ string get_rim_num(int x)
     string answer = "";
     for (int i = 0; i < length_of_string; i++)
     {
-        // cout << answer << endl;
         if (char_to_int(num_as_string[i]) < 4)
         {
-            cout << 1 << endl;
             answer += get_rim_num(num_as_string[i], length_of_string - 1 - i);
         }
         else if 
@@ -112,7 +105,7 @@ string get_rim_num(int x)
             answer += get_rim_num(
                 b_num,
                 '-',
-                int(num_as_string[i]), 
+                char_to_int(num_as_string[i]), 
                 length_of_string - i - 1
             );
         }
@@ -123,7 +116,7 @@ string get_rim_num(int x)
         )
         {
             int b_num = 5;
-            int s_num = int(num_as_string[i]) - 5;
+            int s_num = char_to_int(num_as_string[i]) - 5;
             answer += get_rim_num(b_num, '+', s_num, length_of_string - i - 1);
         }
         
